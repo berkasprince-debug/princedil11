@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment prince dil</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: #ecf0f1;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+            background-color: rgba(52, 73, 94, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: #2c3e50;
+            padding: 25px;
+            text-align: center;
+            border-bottom: 2px solid #3498db;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        .payment-content {
+            padding: 25px;
+        }
+
+        .payment-option {
+            background-color: rgba(44, 62, 80, 0.7);
+            border-radius: 10px;
+            margin-bottom: 20px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            border: 1px solid #34495e;
+        }
+
+        .payment-option:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border-color: #3498db;
+        }
+
+        .payment-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .payment-icon {
+            width: 50px;
+            height: 50px;
+            background-color: #3498db;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 15px;
+            font-size: 24px;
+            color: white;
+        }
+
+        .payment-title {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .payment-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(52, 73, 94, 0.5);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .payment-number {
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+            letter-spacing: 1px;
+        }
+
+        .copy-btn {
+            background-color: #3498db;
+            border: none;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+        .copy-btn:hover {
+            background-color: #2980b9;
+        }
+
+        .instructions {
+            margin-top: 30px;
+            background-color: rgba(44, 62, 80, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #3498db;
+        }
+
+        .instructions h3 {
+            margin-bottom: 10px;
+            font-size: 18px;
+            color: #3498db;
+        }
+
+        .instructions ol {
+            padding-left: 20px;
+        }
+
+        .instructions li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+            opacity: 0.7;
+            border-top: 1px solid #34495e;
+        }
+
+        /* Animasi untuk notifikasi salin */
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #2ecc71;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .notification.show {
+            opacity: 1;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                border-radius: 10px;
+            }
+            
+            .header {
+                padding: 20px;
+            }
+            
+            .payment-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Payment Gateway</h1>
+            <p>Transfer pembayaran dengan mudah dan aman</p>
+        </div>
+        
+        <div class="payment-content">
+            <div class="payment-option">
+                <div class="payment-header">
+                    <div class="payment-icon">D</div>
+                    <div class="payment-title">DANA</div>
+                </div>
+                <div class="payment-details">
+                    <div class="payment-number" id="dana-number">083159036819</div>
+                    <button class="copy-btn" data-number="083159036819">Salin</button>
+                </div>
+            </div>
+            
+            <div class="payment-option">
+                <div class="payment-header">
+                    <div class="payment-icon">G</div>
+                    <div class="payment-title">GOPAY</div>
+                </div>
+                <div class="payment-details">
+                    <div class="payment-number" id="gopay-number">083159036819</div>
+                    <button class="copy-btn" data-number="083159036819">Salin</button>
+                </div>
+            </div>
+            
+            <div class="instructions">
+                <h3>Instruksi Pembayaran</h3>
+                <ol>
+                    <li>Pilih metode pembayaran yang diinginkan (DANA atau GOPAY)</li>
+                    <li>Klik tombol "Salin" untuk menyalin nomor pembayaran</li>
+                    <li>Buka aplikasi DANA atau GOPAY di ponsel Anda</li>
+                    <li>Tempel nomor yang telah disalin dan lakukan transfer</li>
+                    <li>Simpan bukti pembayaran untuk konfirmasi</li>
+                </ol>
+            </div>
+        </div>
+        
+        <div class="footer">
+            &copy; 2025 Payment prince dil. All rights reserved.
+        </div>
+    </div>
+    
+    <div class="notification" id="notification">Nomor berhasil disalin!</div>
+
+    <script>
+        // Fungsi untuk menyalin nomor ke clipboard
+        document.querySelectorAll('.copy-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const number = this.getAttribute('data-number');
+                navigator.clipboard.writeText(number).then(() => {
+                    // Tampilkan notifikasi
+                    const notification = document.getElementById('notification');
+                    notification.textContent = `Nomor ${number} berhasil disalin!`;
+                    notification.classList.add('show');
+                    
+                    // Sembunyikan notifikasi setelah 3 detik
+                    setTimeout(() => {
+                        notification.classList.remove('show');
+                    }, 3000);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
